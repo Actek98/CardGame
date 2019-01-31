@@ -1,0 +1,7 @@
+F:\Ilya\С#kurs\Homework3\CardColoda\obj\Debug\CardDeck.csprojAssemblyReference.cache
+F:\Ilya\С#kurs\Homework3\CardColoda\obj\Debug\CardDeck.csproj.CoreCompileInputs.cache
+F:\Ilya\С#kurs\Homework3\CardColoda\obj\Debug\CardColoda.exe
+F:\Ilya\С#kurs\Homework3\CardColoda\obj\Debug\CardColoda.pdb
+F:\Ilya\С#kurs\Homework3\CardColoda\bin\Debug\CardColoda.exe.config
+F:\Ilya\С#kurs\Homework3\CardColoda\bin\Debug\CardColoda.exe
+F:\Ilya\С#kurs\Homework3\CardColoda\bin\Debug\CardColoda.pdb
