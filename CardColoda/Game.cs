@@ -11,26 +11,12 @@ namespace CardDeck
 
         public Game()
         {
-            
             _cardDeck = new CardDeck();
         }
 
         public void BeginGame()
         {
-            
-            Console.Write("Введите колличество игроков: ");
-            _coll = byte.Parse(Console.ReadLine());
-            _players = new Player[_coll];
-
-            for (byte i = 0; i < _coll; i++)
-            {
-                Console.Write($"Введите имя {i + 1}-го игрока: ");
-                _players[i] = new Player(Console.ReadLine());
-                _players[i].TakeCard(_cardDeck);
-                _players[i].TakeCard(_cardDeck);
-                _players[i].TakeCard(_cardDeck);
-                _players[i].TakeCard(_cardDeck); //начальная рука 4 карты
-            }
+            Init();
 
             Console.Clear();
             ConsoleKey key;
@@ -42,7 +28,64 @@ namespace CardDeck
                     if (true) ;
                 }
                 key = Console.ReadKey(true).Key;
-            } while (key != ConsoleKey.Escape || );
+            } while (key != ConsoleKey.Escape || true);
+        }
+
+        /// <summary>
+        /// Создание списка игроков
+        /// </summary>
+        private void Init()
+        {
+            for(; ; )
+            { 
+                Console.Clear();
+                Console.Write("Введите колличество игроков: ");
+                if (byte.TryParse(Console.ReadLine(), out _coll) && _coll > 1  && _coll < 7)
+                {
+                    _players = new Player[_coll];
+                    Console.Clear();
+                    break;
+                }
+                else
+                {
+                    Console.Write("Колличество от 2-х до 6-и!");
+                    System.Threading.Thread.Sleep(2000);
+                    continue;
+                }
+            }
+
+            for (byte i = 0; i < _coll; i++)
+                _players[i] = new Player();
+            PlayersInit();
+        }
+
+        /// <summary>
+        /// Ввод имен игроков
+        /// </summary>
+        private void PlayersInit()
+        {
+            char ch;
+            for (; ; )
+            {
+                Console.Clear();
+                Console.WriteLine("Вводите разные имена!");
+                for (byte i = 0; i < _coll; i++)
+                {
+                    Console.Write($"Введите имя {i + 1}-го игрока: ");
+                    _players[i].Name = Console.ReadLine();
+                }
+                Console.WriteLine("Вас устраивают имена? (д/н)");
+                for (; ; )
+                {
+                    ch = Console.ReadKey(true).KeyChar;
+                    if (ch == 'Д' || ch == 'д')
+                    {
+                        Console.Clear();
+                        return;
+                    }
+                    if (ch == 'н' || ch == 'Н') break;
+                }
+            }
         }
 
         public bool Step(byte playerID)
@@ -52,7 +95,7 @@ namespace CardDeck
             Console.Write("Введите номер игрока на которого будет совершен ход: ");
             byte num;
             if (byte.TryParse(Console.ReadLine(), out num))
-                if (num > 0 && num < _coll) //;
+                if (num > 0 && num < _coll) ; 
             return flag;
         }
 
@@ -67,7 +110,7 @@ namespace CardDeck
         {
             Console.WriteLine("Список игроков:");
             for (byte i = 0; i < _coll; i++)
-                Console.WriteLine($"{i+1}. Игрок {_players[i].Name}: {_players[i].HandSize} карт");
+                Console.WriteLine($"{i+1}. Игрок {_players[i].Name}. Карт: {_players[i].HandSize}");
         }
     }
 }

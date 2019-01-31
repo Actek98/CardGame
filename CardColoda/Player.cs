@@ -10,7 +10,7 @@ namespace CardDeck
     {
         List<Card>[] _hand;
         string name;
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         byte _handSize;
         public byte HandSize { get => _handSize; set => _handSize = value; }
@@ -19,9 +19,8 @@ namespace CardDeck
         public byte Score { get => _score; set => _score = value; }
         
 
-        public Player(string name)
+        public Player()
         {
-            Name = name;
             _hand = new List<Card>[13];
             for (byte i = 0; i < 13; i++)
                 _hand[i] = new List<Card>();

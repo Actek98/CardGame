@@ -1,0 +1,7 @@
+F:\Ilya\GIT_rep\CardGame\CardColoda\obj\Debug\CardGame.csproj.CoreCompileInputs.cache
+F:\Ilya\GIT_rep\CardGame\CardColoda\obj\Debug\CardColoda.exe
+F:\Ilya\GIT_rep\CardGame\CardColoda\obj\Debug\CardColoda.pdb
+F:\Ilya\GIT_rep\CardGame\CardColoda\bin\Debug\CardColoda.exe.config
+F:\Ilya\GIT_rep\CardGame\CardColoda\bin\Debug\CardColoda.exe
+F:\Ilya\GIT_rep\CardGame\CardColoda\bin\Debug\CardColoda.pdb
+F:\Ilya\GIT_rep\CardGame\CardColoda\obj\Debug\CardGame.csprojAssemblyReference.cache
