@@ -8,9 +8,9 @@ namespace CardDeck
 {
     class Player
     {
-        List<Card>[] _hand;
-        string name;
-        public string Name { get; set; }
+        Hand _hand;
+        string _name;
+        public string Name { get => _name; set => _name = value; }
 
         byte _handSize;
         public byte HandSize { get => _handSize; set => _handSize = value; }
@@ -21,51 +21,66 @@ namespace CardDeck
 
         public Player()
         {
-            _hand = new List<Card>[13];
-            for (byte i = 0; i < 13; i++)
-                _hand[i] = new List<Card>();
-            HandSize = 0;
+            _hand = new Hand();
             Score = 0;
         }
 
+        /// <summary>
+        /// Взять в руку карту из колоды
+        /// </summary>
+        /// <param name="deck">Колода из которой берется карта.</param>
         public void TakeCard(CardDeck deck)
         {
             Card card = deck.NextCard;
-            _hand[card.Weight].Add(card);
+            _hand.AddCard((byte)card.Weight, (byte)card.Mast);
             HandSize++;
         }
 
+        /// <summary>
+        /// Взять определенную карту в руку
+        /// </summary>
+        /// <param name="i">Вес карты в диапазоне 0 - 12 (2 - Туз).</param>
+        /// <param name="j">Масть карты в диапазоне 0 - 3 (пики, трефы, чирвы, бубны).</param>
+        public void TakeCard(byte i, byte j)
+        {
+            _hand.AddCard(i, j);
+            HandSize++;
+        }
+
+        /// <summary>
+        /// Убрать карту из руки
+        /// </summary>
+        /// <param name="i">Вес карты в диапазоне 0 - 12 (2 - Туз).</param>
+        /// <param name="j">Масть карты в диапазоне 0 - 3 (пики, трефы, чирвы, бубны).</param>
+        public void RemoveCard(byte i, byte j)
+        {
+            _hand.RemoveCard(i, j);
+            HandSize--;
+        }
+        
+        /// <summary>
+        /// Прорисовка карт в руке игрока 
+        /// </summary>
         public void DrawHand()
         {
             Console.WriteLine("Ваша колода: ");
+            _hand.Draw();
+        }
+
+        /// <summary>
+        /// Закрыть существующие сундуки
+        /// </summary>
+        public void CloseChest()
+        {
             for (byte i = 0; i < 13; i++)
-            {
-                if (_hand[i].Count != 0)
+                if (_hand.IsChest(i))
                 {
-                    for(byte j = 0; j < _hand[i].Count; j++)
+                    for (byte j = 0; j < 4; j++)
                     {
-                        Console.Write($"{_hand[i][j]}");
+                        _hand.RemoveCard(i, j);
+                        Score++;
                     }
-                    Console.WriteLine();
-                }
-            }
-        }
-
-        public void TakeAway(byte count, List<Card> cards)
-        {
-            for (byte i = 0; i < cards.Count; i++)
-            {
-                _hand[cards[0].Weight].Add(cards[i]);
-            }
-        }
-
-        private void CloseChest()
-        {
-            for (byte i = 0; i < HandSize; i++)
-                if (_hand[i].Count == 4)
-                {
-                    Score++;
-                    _hand[i].Clear();
+                    Console.WriteLine($"Игрок {Name} сложил сундучок. ");
                 }
         }
 

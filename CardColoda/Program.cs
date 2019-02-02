@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CardDeck
 {
+
     class Program
     {
         static void Main(string[] args)
@@ -24,7 +21,8 @@ namespace CardDeck
 В случае успешного хода, ход продолжается но уже на следующего по списку игрока. 
 В случае ошибки, ходящий берет карту и ход переходит к следующему игроку.
 Таким образом, играют до конца игры. Выигрывает тот игрок, который соберет у себя больше сундучков. 
-Сундучок состоит из 4 - х карт одного значения.";
+Сундучок состоит из 4 - х карт одного значения.
+Масти: пики - ♠, трефы - ♣, чирвы - ♥, бубны - ♦";
 
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine(rules);

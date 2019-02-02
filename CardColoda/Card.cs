@@ -9,22 +9,15 @@ namespace CardDeck
     class Card
     {
         int _mast;
+        public int Mast { get => _mast; set => _mast = value; }
         int _weight;
         public int Weight { get => _weight; private set => _weight = value; }
 
-        static string[] masts = { "♠", "♣", "♥", "♦" };
-        static string[] names = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "В", "Д", "К", "Т" };
-
         public Card(int card)
-    {
-        _mast = card / 13;
-        Weight = card % 13;  // Вес карты от 2 до 14 (туз)
-    }
+        {
+            Mast = card / 13;
+            Weight = card % 13;  // Вес карты от 2 до 14 (туз)
+        }
 
-    public override string ToString()
-    {
-        return $"{names[Weight],2} {masts[_mast]}";
     }
-
-}
 }
