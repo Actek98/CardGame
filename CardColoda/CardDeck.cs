@@ -10,6 +10,7 @@ namespace CardDeck
         Random _rnd;
 
         int _current = 0;
+
         public bool _empty { get; private set; }
 
         private void RandomShuffle()
@@ -48,6 +49,11 @@ namespace CardDeck
             RandomShuffle();
             _current = 0;
             _empty = false;
+        }
+
+        public byte Reserv()
+        {
+            return (byte)(52 - _current);
         }
     }
 

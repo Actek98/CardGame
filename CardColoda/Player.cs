@@ -31,9 +31,13 @@ namespace CardDeck
         /// <param name="deck">Колода из которой берется карта.</param>
         public void TakeCard(CardDeck deck)
         {
-            Card card = deck.NextCard;
-            _hand.AddCard((byte)card.Weight, (byte)card.Mast);
-            HandSize++;
+            if (!deck._empty)
+            {
+                Card card = deck.NextCard;
+                _hand.AddCard((byte)card.Weight, (byte)card.Mast);
+                HandSize++;
+                Console.WriteLine($"Игрок {Name} взял карту из колоды.");
+            }
         }
 
         /// <summary>
@@ -57,7 +61,24 @@ namespace CardDeck
             _hand.RemoveCard(i, j);
             HandSize--;
         }
-        
+
+        /// <summary>
+        /// Ищет карты определенного дсотоинства у игрока
+        /// </summary>
+        /// <param name="weight">Достоинство карты</param>
+        /// <returns>Число, мадшие 4 бита которого показывают наличие мастей</returns>
+        public byte DoHaveCard(byte weight)
+        {
+            int masts = 0;
+            for (byte i = 0; i < 4; i++)
+            {
+                masts = masts >> 1;
+                if (_hand.DoHave(weight, i))
+                    masts |= 8;
+            }
+            return (byte)masts;
+        }
+
         /// <summary>
         /// Прорисовка карт в руке игрока 
         /// </summary>
@@ -76,10 +97,8 @@ namespace CardDeck
                 if (_hand.IsChest(i))
                 {
                     for (byte j = 0; j < 4; j++)
-                    {
-                        _hand.RemoveCard(i, j);
-                        Score++;
-                    }
+                        RemoveCard(i, j);
+                    Score++;
                     Console.WriteLine($"Игрок {Name} сложил сундучок. ");
                 }
         }
