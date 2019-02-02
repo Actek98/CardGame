@@ -142,7 +142,8 @@ namespace CardDeck
                     System.Threading.Thread.Sleep(1500);
                     continue;
                 }
-                _players[playerID].DrawHand();
+                //_players[playerID].DrawHand(); 
+                // Либо нужно планировать ход заранее, либо противник будет видеть твои карты во время твоего хода.
 
                 flag = Atack(_players[playerID], _players[i]);
                 _players[playerID].CloseChest();
